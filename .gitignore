@@ -169,3 +169,17 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# comparch ignore
+bin/
+etc/
+examples/
+include/
+lib/
+license/
+share/
+start.bat
+environment.bat
+environment.ps1
+README
