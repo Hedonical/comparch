@@ -183,3 +183,7 @@ start.bat
 environment.bat
 environment.ps1
 README
+*.vcd
+*.bin
+*.json
+*.asc
