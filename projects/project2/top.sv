@@ -8,23 +8,65 @@ module top(
     output logic    RGB_R,
     output logic    RGB_B
 );
-    logic pwm_out;
-    integer pwm_value;
+    logic red_out;
+    integer red;
+
+    logic green_out;
+    integer green;
+
+    logic blue_out;
+    integer blue;
 
     // red led
-    rampR u1 (
+    ramp #(
+        .steps (7'b1100011)
+    )
+    u1 (
         .clk (clk),
-        .pwm_value (pwm_value)
+        .pwm_value (red)
     );
 
-
-    pwm u2 (
+    // green led
+    ramp #(
+        .steps (7'b0111000)
+    )
+    u2 (
+            .clk (clk),
+            .pwm_value (green)
+        );
+    
+    // blue led
+    ramp #(
+        .steps (7'b0001110)
+    )
+    u3 (
         .clk (clk),
-        .pwm_value (pwm_value),
-        .pwm_out (pwm_out)
+        .pwm_value (blue)
     );
 
-    assign RGB_R = ~pwm_out;
+    pwm u4 (
+        .clk (clk),
+        .duty_cycle (red),
+        .pwm_out (red_out)
+    );
+
+    assign RGB_R = red_out;
+
+    pwm u5 (
+        .clk (clk),
+        .duty_cycle (green),
+        .pwm_out (green_out)
+    );
+
+    assign RGB_G = green_out;
+
+    pwm u6 (
+        .clk (clk),
+        .duty_cycle (blue),
+        .pwm_out (blue_out)
+    );
+
+    assign RGB_B = blue_out;
 
 
 

@@ -14,11 +14,11 @@ module top_tb;
         .RGB_R  (RGB_R),
         .RGB_G   (RGB_G)
     );
-
+    //140000000
     initial begin
         $dumpfile("top.vcd");
         $dumpvars(0, top_tb);
-        #60000000
+        #100000000
         $finish;
     end
 
