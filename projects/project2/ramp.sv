@@ -30,6 +30,8 @@ module ramp #(
 
     // establish the rates
     initial begin
+
+
         // initialize the initial pwm value
         if (steps[0]) pwm_value = 100;
         else pwm_value = 0;
@@ -74,14 +76,14 @@ module ramp #(
     always_ff @(posedge clk) begin
         pwm_count <= pwm_count + 1;
 
-        if (pwm_count == substep) begin
+        if (pwm_count > substep) begin
             pwm_value <= pwm_value + rate[stage];
             pwm_count <= 0;
         end
 
         count <= count + 1; // iterate the count
 
-        if (count == step) begin
+        if (count > step) begin
             count <= 0; // reset the count
 
             // switch to the next stage

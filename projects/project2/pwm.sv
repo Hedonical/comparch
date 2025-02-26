@@ -20,12 +20,12 @@ module pwm #(
         pwm_on <= (step*duty_cycle)/100;
 
         // handle the 0 or 100 duty cycle (led fully on or off)
-        if (duty_cycle >= 100 || duty_cycle <= 0) begin
+        if (duty_cycle >= 99 || duty_cycle <= 1) begin
             // keep the led on
-            if (duty_cycle == 100) begin
+            if (duty_cycle >= 99) begin
                 switch <= 0;
             end
-            if (duty_cycle == 0) begin
+            if (duty_cycle <= 1) begin
                 switch <= 1;
             end
 
