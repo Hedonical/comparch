@@ -9,6 +9,8 @@ module pwm #(
 
     integer pwm_on = 0;
 
+    integer scalar = step/100;
+
     // Declare PWM generator counter variable
     int pwm_count = 0;
 
@@ -17,7 +19,7 @@ module pwm #(
     // Implement counter for timing transition in PWM output signal
     always_ff @(posedge clk) begin
         // determine how long for the led to stay on for a step
-        pwm_on <= (step*duty_cycle)/100;
+        pwm_on <= duty_cycle*scalar;
 
         // handle the 0 or 100 duty cycle (led fully on or off)
         if (duty_cycle >= 99 || duty_cycle <= 1) begin
