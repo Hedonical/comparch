@@ -17,13 +17,13 @@ module top(
 );
     // only need 7 bits for 128 bits of memory
     logic [6:0] address = 0;
-    logic [9:0] data;
+    logic [8:0] data;
 
     
     
 
     memory #(
-        .INIT_FILE      ("sine.txt")
+        .INIT_FILE      ("sine2.txt")
     ) u1 (
         .clk            (clk), 
         .read_address   (address), 

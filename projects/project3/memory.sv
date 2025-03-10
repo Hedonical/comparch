@@ -3,15 +3,15 @@
 module memory #(
     parameter INIT_FILE = "",
     parameter logic [6:0] mem_size = 127, // one less than actual value, so 127 is actually 128
-    parameter logic [9:0] max_value = 1023 // record the max value that the sine wave can be
+    parameter logic [8:0] max_value = 511 // record the max value that the sine wave can be
 )(
     input logic     clk,
     input logic     [6:0] read_address,
-    output logic    [9:0] read_data
+    output logic    [8:0] read_data
 );
 
-    // Declare memory array for storing 512 10-bit samples of a sine function
-    logic [9:0] sample_memory [0:mem_size];
+    // Declare memory array for storing 128 9-bit samples of a sine function
+    logic [8:0] sample_memory [0:mem_size];
 
     // declare a variable to store the stage count
     int stage = 1;
@@ -23,7 +23,7 @@ module memory #(
     int value = 0;
 
     initial if (INIT_FILE) begin
-        $readmemh(INIT_FILE, sample_memory);
+        $readmemb(INIT_FILE, sample_memory);
     end
 
     always_ff @(posedge clk) begin
